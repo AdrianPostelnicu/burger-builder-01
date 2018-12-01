@@ -111,3 +111,10 @@
     background: linear-gradient(#bf3813, #c45e38);
     margin: 2% auto;
 }
+
+.Ketchup {
+    width: 70%;
+    height: 2%;
+    background: linear-gradient(rgb(102, 2, 2) , #a30404);
+    margin: 2% auto;
+}

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import Aux from '../../hoc/Aux';
+import Aux from '../Aux/Aux';
 import classes from './Layout.css';
-import Toolbar from '../Navigation/Toolbar/Toolbar';
-import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
+import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
+import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
+import PropTypes from 'prop-types';
 
 class Layout extends Component {
     state = {
@@ -37,5 +38,9 @@ class Layout extends Component {
         );
     }
 }
+
+Layout.propTypes = {
+    showSideDrawer: PropTypes.bool
+};
 
 export default Layout;
