@@ -11,7 +11,8 @@ import classes from './Modal.css';
 class Modal extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         //checking to see if the show prop has changed, basically if I should open the modal
-        return nextProps.show !== this.props.show;
+        //add the second check for displaying the spinner
+        return nextProps.show !== this.props.show || nextProps.children !== this.props.children;
     }
 
     componentWillUpdate() {
