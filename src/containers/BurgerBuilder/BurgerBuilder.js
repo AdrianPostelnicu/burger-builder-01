@@ -9,7 +9,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
 const INGREDIENT_PRICES = {
-    salad: 0.5,
+    asalad: 0.5,
     cheese: 0.5,
     bacon: 1,
     meat: 2,
@@ -89,33 +89,16 @@ class BurgerBuilder extends Component {
 
     purchaseContinueHandler = () => {
         //alert('You continue!');
-        this.setState( { loading: true } );
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: 'Adi Eu',
-                adress: {
-                    city: 'Vol',
-                    street: 'oarecare strada',
-                    country: 'Romania',
-                    zipCode: '12345'
-                }
-            },
-            deliveryMethod: 'fastest'
-        };
-
-        //when using Firebase we need to provide it with the second level of the (data)
-        //structure and it will automatically create it in the backend/DB 
-        //must have ".json"
-        axios.post('/orders.json', order)
-            .then(response => {
-                this.setState( { loading: false, purchasing: false } );
-            })
-            .catch(error => {
-                this.setState( { loading: true, purchasing: false } );
-            })
-            ;
+        const queryParams = [];
+        for (let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
+        }
+        queryParams.push('price='+this.state.totalPrice);
+        const queryString = queryParams.join('&');
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        });
     }
 
     render () {
